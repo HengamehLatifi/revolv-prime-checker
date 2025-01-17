@@ -1,23 +1,21 @@
 cmake_minimum_required(VERSION 3.22)
-
 project(CheckPrime LANGUAGES CXX)
 
-# Set C++ standard
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 20)
 
-# Define the main source files
-set(SOURCES
-    src/main.cpp
-    lib/PrimeChecker.cpp
-)
+# Main
+add_executable(app src/main.cpp lib/PrimeChecker.cpp)
+target_include_directories(app PRIVATE include)
 
-# Include the header files
-include_directories(include/)
+# Catch2
+include(FetchContent)
+FetchContent_Declare(Catch2 GIT_REPOSITORY https://github.com/catchorg/Catch2.git GIT_TAG v3.3.2)
+FetchContent_MakeAvailable(Catch2)
 
-# Create the executable for the main application
-add_executable(app ${SOURCES})
-
-# Create the executable for the test suite
+# Tests
 add_executable(tests tests/test_prime.cpp lib/PrimeChecker.cpp)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+include(CTest)
+include(Catch)
+catch_discover_tests(tests)
 

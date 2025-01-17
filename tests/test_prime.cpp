@@ -1,29 +1,40 @@
-#include <iostream>
+#define CATCH_CONFIG_MAIN
+#include <catch2/catch.hpp>
 #include "PrimeChecker.hpp"
 
-void runTest(const int testNum, bool result) {
-    if(result) {
-        std::cout << "Test " << testNum << " passed.\n";
-    } else {
-        std::cerr << "Test " << testNum << " failed.\n";
-    }
-}
-
-int main() {
+TEST_CASE("PrimeChecker basic tests", "[PrimeChecker]") {
     PrimeChecker toCheck;
-    int failedTests = 0;
 
-    // Test cases
-    runTest(1, !toCheck.isPrime(-5));   // Negative numbers not prime
-    runTest(2, !toCheck.isPrime(0));      // 0 is not prime
-    runTest(3, !toCheck.isPrime(1));      // 1 is not prime
-    runTest(4, toCheck.isPrime(2));       // 2 is prime
-    runTest(5, toCheck.isPrime(3));       // 3 is prime
-    runTest(6, !toCheck.isPrime(4));      // 4 is not prime
-    runTest(7, toCheck.isPrime(17));      // 17 is prime
-    runTest(8, !toCheck.isPrime(18));     // 18 is not prime
+    SECTION("Negative numbers are not prime") {
+        REQUIRE_FALSE(toCheck.isPrime(-5));
+    }
 
+    SECTION("0 is not prime") {
+        REQUIRE_FALSE(toCheck.isPrime(0));
+    }
 
-    return 0;
+    SECTION("1 is not prime") {
+        REQUIRE_FALSE(toCheck.isPrime(1));
+    }
+
+    SECTION("2 is prime") {
+        REQUIRE(toCheck.isPrime(2));
+    }
+
+    SECTION("3 is prime") {
+        REQUIRE(toCheck.isPrime(3));
+    }
+
+    SECTION("4 is not prime") {
+        REQUIRE_FALSE(toCheck.isPrime(4));
+    }
+
+    SECTION("17 is prime") {
+        REQUIRE(toCheck.isPrime(17));
+    }
+
+    SECTION("18 is not prime") {
+        REQUIRE_FALSE(toCheck.isPrime(18));
+    }
 }
 
