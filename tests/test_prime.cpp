@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
-#include "PrimeChecker.hpp"
+#include "prime_checker.hpp"
 
 TEST_CASE("PrimeChecker basic tests", "[PrimeChecker]") {
     PrimeChecker toCheck;

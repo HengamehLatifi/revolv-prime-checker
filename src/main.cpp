@@ -1,6 +1,7 @@
+
 #include <iostream>
 #include <cstdlib>
-#include "PrimeChecker.hpp"
+#include "prime_checker.hpp"
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
@@ -8,7 +9,17 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    int number = std::atoi(argv[1]);
+    int number;
+    try {
+        number = std::stoi(argv[1]);
+    } catch (const std::invalid_argument& e) {
+        std::cout << "Invalid input: is not a valid integer!\n";
+        return 1;
+    } catch (const std::out_of_range& e) {
+        std::cout << "Invalid input: number is too large!\n";
+        return 1;
+    }
+
     PrimeChecker checker;
 
     if (checker.isPrime(number)) {

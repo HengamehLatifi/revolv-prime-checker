@@ -3,7 +3,7 @@
 
 class PrimeChecker{
 public:
-	bool isPrime(int number) const;
+	static bool isPrime(int number);
 };
 
 #endif
