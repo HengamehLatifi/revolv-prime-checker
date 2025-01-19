@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cstdlib>
 #include "prime_checker.hpp"
@@ -20,9 +19,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    PrimeChecker checker;
-
-    if (checker.isPrime(number)) {
+	if (PrimeChecker::isPrime(number)) {
         std::cout << number << " is a prime number.\n";
     } else {
         std::cout << number << " is not a prime number.\n";
